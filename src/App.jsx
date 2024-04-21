@@ -16,12 +16,13 @@ export default function App(){
 
 
   async function fetchData(){
+    const apiKey= import.meta.env.VITE_API_KEY;
     try{
       const response = await fetch(`https://api.github.com/users/bakeji/repos?per_page=9&page=${currentPage}`,{
         method: "GET",
         headers: {
           Accept: "application/vnd.github+json",
-          Authorization: "token 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"
+          Authorization: `token ${apiKey}`
         },
          })
     if(!response.ok){
