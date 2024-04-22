@@ -6,6 +6,7 @@ import {useParams} from "react-router-dom";
 import { AppContext } from "../context/context";
 
 
+
 export default function Repository(){
 
 
@@ -21,6 +22,7 @@ export default function Repository(){
             <Header />
             <BackBtn />
             <RepoInfo />
+            
             </AppContext.Provider >
         </div>
     )

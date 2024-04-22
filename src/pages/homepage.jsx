@@ -4,6 +4,7 @@ import SearchFilter from "../component/search-filter";
 import Repositories from "../component/repositories";
 import { AppContext } from "../context/context";
 import Loading from "../component/loading";
+import RepoModal from "../component/modal";
 
 export default function Homepage(){
     const{data, fetched,setCurrentPage, currentPage, totalPages} = useContext(AppContext)
@@ -53,6 +54,7 @@ useEffect(()=>{
             <AppContext.Provider value={{currentPage, setCurrentPage, data,totalPages, searchError, fetched,filteredRepos, showElements, handleChange, inputValue}}>
             <Header />
             <SearchFilter />
+        
             {fetched?<Repositories /> : <Loading />}
             </AppContext.Provider>
         </div>
