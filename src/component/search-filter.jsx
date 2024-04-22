@@ -1,38 +1,8 @@
-import React, { useContext, useEffect, useState } from "react";
+import React, { useContext } from "react";
 import { AppContext } from "../context/context";
 export default function SearchFilter(){
 
-    const{selectedRepo} = useContext(AppContext)
-    const [showElements, setShowElements] = useState(false)
-    const [filteredRepos, setFilteredRepos] = useState([selectedRepo])
-
-    const [inputValue, setInputValue] = useState({
-        search: "",
-        filter: ""
-    });
-
-    // handle change for the input fields and options
-    function handleChange(event){
-        setInputValue(prevState=>{
-            return{
-            ...prevState,
-            [event.target.name]:event.target.value
-    }})
-    setShowElements(true)
-    }
-
-    // show filtered data
-        useEffect(()=>{
-            if (showElements === true){
-                const filteredRepo = selectedRepo.filter((repos)=>{
-                    return (repos.name.toLowerCase().includes(inputValue.filter.toLowerCase()) && repos.language).includes(inputValue.filter) 
-                })
-
-                setFilteredRepos(filteredRepo)
-            }
-            
-
-        }, [inputValue])
+    const{handleChange, inputValue} = useContext(AppContext)
 
     return(
         <div className="search-filter">
@@ -51,13 +21,13 @@ export default function SearchFilter(){
                 onChange={handleChange} 
                 value={inputValue.filter} 
                 name="filter" 
-                id="filter">
+                id="Filter">
                     <option value="">Filter by language</option>
-                    <option value="React">React</option>
-                    <option value="html">HTML</option>
-                    <option value="javascript">Javascript</option>
+                    <option value="react">react</option>
+                    <option value="html">html</option>
+                    <option value="javascript">javascript</option>
                     <option value="css">Css</option>
-                    <option value="python">Python</option>
+                    <option value="python">python</option>
                     <option value="dart">Dart</option>
                 </select>
             </div>

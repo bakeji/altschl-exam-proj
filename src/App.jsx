@@ -2,6 +2,7 @@ import React, { useEffect } from "react";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Homepage from "./pages/homepage";
 import Repository from "./pages/repository";
+import NotFound from "./pages/404";
 import { AppContext } from "./context/context";
 
 export default function App(){
@@ -10,9 +11,6 @@ export default function App(){
   const [fetched, setFetched]= React.useState(false);
   const [totalPages, setTotalPages] = React.useState(1);
 
-  // const indexOfLastRepo = currentPage * reposPerPage;
-  // const indexOfFirstRepo = indexOfLastRepo - reposPerPage;
-  // const currentRepos = data.slice(indexOfFirstRepo, indexOfLastRepo);
 
 
   async function fetchData(){
@@ -33,17 +31,16 @@ export default function App(){
 
     // get link info for pagination
     const link = response.headers.get("link");
-    console.log(link)
+   
     let ttlPages
     
       const pages = link.split(",");
-      pages.forEach(link => {
+      pages.forEach(link =>   {
         const match = link.includes('rel="last"') && link.match(/&page=(\d+)/);
-        console.log(match)
+        
         if (match) {
           const pageNumber = parseInt(match[1]);
           ttlPages = pageNumber;
-          setFetched(true)
           console.log(pageNumber)
           
           
@@ -55,7 +52,8 @@ export default function App(){
     
     setTotalPages(ttlPages); 
     setData(repositories);
-    // console.log(data)
+    setFetched(true)
+    
 
   
 
@@ -66,20 +64,18 @@ export default function App(){
   }
 }
    
-
+// call api when the current page changes
   useEffect(()=>{
     fetchData();
-    
-  
-  
   }, [currentPage])
   return(
-    <div>
-      <AppContext.Provider value={{data,setTotalPages, totalPages, currentPage, setCurrentPage}}>
+    <div className="app">
+      <AppContext.Provider value={{data, fetched,setTotalPages, totalPages, currentPage, setCurrentPage}}>
       <BrowserRouter>
         <Routes>
           <Route path="/" element={<Homepage />} />
           <Route path="/repository/:repoName" element={<Repository />} />
+          <Route path="*" element={<NotFound />} />
         </Routes>
       </BrowserRouter>
       </AppContext.Provider>

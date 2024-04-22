@@ -7,32 +7,20 @@ export default function Pagnation(){
     const{setCurrentPage,totalPages, setTotalPages, currentPage,} = useContext(AppContext);
     const pageNumbers = [];
 
-    // console.log(currentPage);
-    // console.log(totalPages);
-
     for(let i = 1; i <= totalPages; i++){
         pageNumbers.push(i);
     }
+    console.log(pageNumbers)
     function NextBtn(){
         if(currentPage <totalPages){
             setCurrentPage((prev)=> prev + 1);
-            setDisablePrevBtn(false)
-            setTotalPages(totalPages)
-            console.log(currentPage) }
-        else{
-            setDisableNextBtn(true)
-        }
+}
+        
     }
 
     function PrevBtn(){
         if(currentPage > 1){
             setCurrentPage((prev)=> prev - 1);
-            setDisableNextBtn(false)
-            setDisablePrevBtn(false)
-        }
-        else{
-            setDisablePrevBtn(true)
-            
         }
     }
         function pageNumberBtn(number){
@@ -41,16 +29,16 @@ export default function Pagnation(){
 
     return(
         <div className="pag">
-            <button disabled={disablePrevBtn} onClick={PrevBtn} className="prev-btn">Prev</button>
+            <button disabled={currentPage === 1?  true : false} onClick={PrevBtn} className={`prev-btn ${currentPage===1?"grey":""}`}>Prev</button>
             <div className="pg-nb">
                 {pageNumbers.map((number) => (
-                    <button onClick={()=>pageNumberBtn(number)} key={number} className="btn">
+                    <button onClick={()=>pageNumberBtn(number)} key={number} className={`btn ${currentPage===number? "ch-btn": ""}`}>
                         {number}
                     </button>
                 ))}
         
             </div>
-            <button disabled={disableNextBtn} onClick={NextBtn} className="nxt-btn">Next</button>
+            <button disabled={currentPage===totalPages? true : false} onClick={NextBtn} className={`nxt-btn ${currentPage===totalPages?"grey":""}`}>Next</button>
         </div>
     )
 }
