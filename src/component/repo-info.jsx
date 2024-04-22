@@ -3,12 +3,11 @@ import {Link} from "react-router-dom"
 import { AppContext } from "../context/context";
 export default function RepoInfo(){
     const {selectedRepo} = useContext(AppContext)
-    console.log(selectedRepo)
     return(
         <div className="repo-info">
             <div className="repo-name">
                 <h1>REPOSITORY NAME</h1>
-                <Link><p>{selectedRepo.url}</p></Link>
+                <Link to={selectedRepo.clone_url}><p>{selectedRepo.clone_url}</p></Link>
             </div>
 
 
@@ -19,12 +18,10 @@ export default function RepoInfo(){
                 <p>Stargazers: {selectedRepo.stargazers_count}</p>
                 <p>Date Created:{selectedRepo.created_at}</p>
                 <p>open Issues:{selectedRepo.open_issues}</p>
-                <p>clone Url:{selectedRepo.clone_url}</p>
                 </div>
                 
                 <div className="flx-item">
                 <p>Visibility:{selectedRepo.visibility}</p>
-                <p>DESCRIPTION: {selectedRepo.description} </p>
                 <p>Language: {selectedRepo.language}</p>
                 <p>Default Branch:{selectedRepo.default_branch}</p>
                 <p>Archived: {selectedRepo.archived}</p>
