@@ -16,7 +16,7 @@ header{
     width: 90%;
     margin: auto;
     display: flex;
-    gap: 50%;
+    gap: 10%;
 }
 .header h1{
     font-weight: 800;

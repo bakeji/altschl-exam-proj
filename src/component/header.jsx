@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import RepoModal from "./modal";
 import { Octokit } from "@octokit/rest";
+import DelModal from "./del-modal";
 
 export default function Header(){
     
@@ -8,7 +9,7 @@ export default function Header(){
     const[newRepo, setNewRepo] = useState("");
     const [repoName, setRepoName] = useState("");
     const [Loading, setLoading] = useState(false)
-    const [errorMessage, setErrorMessage] = useState("")
+
 
 // get repo name from the input field
         function handleChange(e){
@@ -35,7 +36,8 @@ async function createRepo(){
         setNewRepo(response.data.clone_url)
       } catch (error) {
         console.error("Error creating repository:", error);
-        setErrorMessage(error.message)
+        alert(error.message)
+        
       }
     
    
@@ -70,10 +72,11 @@ async function createRepo(){
                         newRepo={newRepo}
                         Loading ={Loading}
                         createRepoBtn= {createRepoBtn}
-                        errorMessage={errorMessage}
                         />
-                    
-                   
+                </div>
+
+                <div className="mdl">
+                    <DelModal />
                 </div>
             </div>
         </header>
