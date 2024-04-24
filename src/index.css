@@ -16,7 +16,7 @@ header{
     width: 90%;
     margin: auto;
     display: flex;
-    gap: 10%;
+    gap: 20%;
 }
 .header h1{
     font-weight: 800;
@@ -374,7 +374,7 @@ select{
 }
 @media screen and (max-width:769px){
   .header{
-    gap: 30%;
+    gap: 7%;
   }
   .repos{
     grid-template-columns: 45% 45% ;
@@ -387,7 +387,11 @@ select{
 
 @media screen and (max-width:481px){
   .header{
-    gap: 10%;
+    gap: 2%;
+    width: 100%;
+  }
+  .logo p{
+    display: none;
   }
   .header h1{
     font-size: 30px;

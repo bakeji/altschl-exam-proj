@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import DelForm from "./del-fm";
 import { Octokit } from "@octokit/rest";
 
@@ -56,9 +56,10 @@ import {
 
 
 
+
     return (
       <div>
-        <Button onClick={onOpen}>Delete Repository</Button>
+        <Button style={{background: "red", color: "white"}} onClick={onOpen}>Delete Repository</Button>
   
         <Modal isOpen={isOpen} onClose={onClose}>
           <ModalOverlay />

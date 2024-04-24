@@ -61,7 +61,7 @@ async function createRepo(){
 
                 <div className="logo">
                     <img src="/github.png" alt="github logo" />
-                    <p>Github Repositories</p>
+                    <p>Github</p>
                     </div>
 
 
@@ -75,7 +75,7 @@ async function createRepo(){
                         />
                 </div>
 
-                <div className="mdl">
+                <div className="mdl ">
                     <DelModal />
                 </div>
             </div>
