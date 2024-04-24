@@ -35,9 +35,9 @@ setShowElements(true)
 useEffect(()=>{
     if (showElements === true){
         const filteredRepo = data?.filter((repos)=>{
-            return repos.name?.toLowerCase().includes(inputValue.search.toLowerCase())
+            return repos.name.toLowerCase().includes(inputValue.search.toLowerCase())
             
-            && repos.language?.toLowerCase().includes(inputValue.filter)
+            && repos.language?.toLowerCase().includes(inputValue.filter.toLowerCase())
         })
         setFilteredRepos(filteredRepo)
         setSearchError(false)

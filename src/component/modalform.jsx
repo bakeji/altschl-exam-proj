@@ -19,7 +19,7 @@ export default function ModalForm(props){
                  name="repoName" />
 
                  <div>
-                    {props.newRepo!== ""&& <Link to={props.newRepo} ><p>New Repo Link</p></Link>}
+                    {props.newRepo!== ""&& <Link to={props.newRepo} ><p className="np">New Repo Link</p></Link>}
                     <p>{props.errorMessage}</p>
                  </div>
          
