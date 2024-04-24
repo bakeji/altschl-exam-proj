@@ -27,7 +27,7 @@ export default function Header(){
 async function createRepo(){
     try {
         const response = await octokit.repos.createForAuthenticatedUser({
-          name: {repoName},
+          name: repoName,
           description: "This is a new repository created using Octokit",
           private: false,
         });
